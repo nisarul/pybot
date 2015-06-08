@@ -1,88 +1,52 @@
-# PyBot
+# Telex
+A Telegram Bot based on plugins. 
 
-A plugins-based Python Telegram Bot.
-This bot is based on https://github.com/datamachine/telex
+This bot uses tg and tgl C libraries for its bindings, and we have been contributing our python bindings as we work through it.
 
-### Installation
-Steps:
-1: Clone git repository.
-2: Install dependencies
-3: Install pybot
-4: Setup tg
-5: Run pybot
+Everything is being written for Python 3.4 currently. Everything works in a virtualenv installed and sourced in the launch script.
 
-#### Cloning the repository
+    git clone https://github.com/datamachine/telex --recursive
+    cd telex
+    ./launch.sh install
+    ./launch.sh
 
-     git clone --recursive https://github.com/nisarul/pybot.git && pybot
+There are not a ton of useful plugins by default, but you can run ``` !pkg update ``` and then ``` !pkg list all ``` to see what plugins are available to install.
 
-#### Installing dependencies
+Some plugins require admin permissions. You can set an admin in permissions.conf using the followig format
 
-##### Linux and BSDs
+```
+[groups]
+  admins = <userid#>,<userid#>,<userid#>
+```
 
-Install libs: readline, openssl and (if you want to use config) libconfig, liblua, python and libjansson.
-If you do not want to use them pass options --disable-libconfig, --disable-liblua, --disable-python and --disable-json respectively.
+You can get your user id number by sending the following query to the bot
 
-(TESTED ONLY ON Debian 8)
+```
+!tginfo id
+```
 
-###### On Ubuntu/Debian use: 
+# Notes
+While already very capable, this bot is still in relatively early development. Some plugin names, or plugin API calls may be modifed. However, we are starting to settle on our stable APIs.
 
-     sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev libjansson-dev python3-dev make 
+With that said, we do strive to have the bot continue to function seemlessly when pulling the latest HEAD
 
-###### On gentoo:
+# Contact
 
-     sudo emerge -av sys-libs/readline dev-libs/libconfig dev-libs/openssl dev-lang/lua dev-libs/libevent dev-libs/jansson dev-lang/python3
+The primary developers are Vince (@Surye) and Phillip (@Tyrannosaurus) and can be contacted directly through telegram.
 
-###### On Fedora:
+You can also join our telegram group using the link: https://telegram.me/joinchat/05c5c2f60112fa104d1c0c563b2fd34a
 
-     sudo yum install lua-devel openssl-devel libconfig-devel readline-devel libevent-devel libjansson-devel python3-devel
+Bug reports and issues can be reported at: https://github.com/datamachine/telex/issues
 
-###### On FreeBSD:
+# Known Issues
 
-     pkg install libconfig libexecinfo lua52 python3
+## Not recieving telegram verification text on initial launch
 
-###### On OpenBSD:
+Try running tg directly.
 
-     pkg_add libconfig libexecinfo lua python3
+```
+$ tg/bin/telegram-cli
+```
 
-###### On openSUSE:
+Once you verify the client, you can stop it and run the launch.sh script again.
 
-     sudo zypper in lua-devel libconfig-devel readline-devel libevent-devel libjansson-devel python3-devel libopenssl-devel
-
-#### Installing PyBot
-To install the bot, run the following in pybot directory.
-
-     ./launch.sh install
-
-#### Setting up Telegram cli (verifying phone number)
-Do the following.
-
-     cd tg
-     bin/telegram-cli -k tg-server.pub
-
-It will ask for your phone number and confirmation code.
-After successful verificaion of phone number, press Ctrl+C to stop telegram-cli.
-
-#### Running PyBot
-
-To start the bot, run the following in pybot directory.
-
-     ./launch
-
-### Running bot as a service
-If you have [upstart](http://upstart.ubuntu.com/), you can run the bot as a service by following the below procedure.
-
-To check if you have upstart, just run 
-
-     sudo start
-
-If output something like this, then you have upstart.
-
-     start: missing job name
-     Try `start --help' for more information.
-Edit the config file.
-
-     sed -i "s/yourusername/$(whoami)/g" temp/pybot.conf
-     sed -i "s_telegrambotpath_$(pwd)_g" temp/pybot.conf
-     sudo cp temp/pybot.conf /etc/init/
-     sudo start telegram # To start it
-     sudo stop telegram # To stop it
