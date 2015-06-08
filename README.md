@@ -22,7 +22,7 @@ Steps:
 Install libs: readline, openssl and (if you want to use config) libconfig, liblua, python and libjansson.
 If you do not want to use them pass options --disable-libconfig, --disable-liblua, --disable-python and --disable-json respectively.
 
-(TESTED ONLY ON UBUNTU 12.04 LTS)
+(TESTED ONLY ON Debian 8)
 
 ###### On Ubuntu/Debian use: 
 
