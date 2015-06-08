@@ -1,10 +1,11 @@
 # PyBot
 
 A plugins-based Python Telegram Bot.
+
 This bot is based on [Telex](https://github.com/datamachine/telex) developed by Vince (@Surye) and Phillip (@Tyrannosaurus)
 
 
-There are not a ton of useful plugins by default, but you can run ``` !pkg update ``` and then ``` !pkg list all ``` to see what plugins are available to install.
+There are not a lot of useful plugins by default, but you can run ``` !pkg update ``` and then ``` !pkg list all ``` to see what plugins are available to install.
 
 Some plugins require admin permissions. You can set an admin in permissions.conf using the followig format
 
